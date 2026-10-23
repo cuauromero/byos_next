@@ -404,13 +404,14 @@ function HourlyWeather({
 }) {
   const profile =
     screen ??
-    createScreenProfile({ width: width ?? 800, height: height ?? 600 });
+    createScreenProfile({ width: width ?? 800, height: height ?? 480 });
   const W = profile.logicalWidth;
   const H = profile.logicalHeight;
-  // Layout is authored on an 800x480 canvas.
+  // Layout is authored on an 800x480 canvas: positions stretch to the screen,
+  // sizes grow by the geometric mean so taller screens get slightly larger type.
   const sx = W / 800;
-  const sy = H / 600;
-  const f = Math.min(sx, sy);
+  const sy = H / 480;
+  const f = Math.min(Math.sqrt(sx * sy), sx * 1.15);
   const X = (x: number) => x * sx;
   const Y = (y: number) => y * sy;
   const S = (s: number) => s * f;
@@ -495,7 +496,7 @@ function HourlyWeather({
   // Current
   texts.push(
     text("cur-label", L, 18, `Current (${fmtClock(now.time, clock)})`, 18, { w: 270 }),
-    text("cur-temp", L + 120, 72, deg(now.temp), 88, { bold: true, w: 150 }),
+    text("cur-temp", L + 124, 74, deg(now.temp), 80, { bold: true, w: 160 }),
     text("cur-desc", L, 196, describe(now.code), 34, { w: 270 }),
   );
   icons.push(icon("cur-icon", L + 2, 62, 2.2, iconFor(now.code, now.day)));
