@@ -404,12 +404,12 @@ function HourlyWeather({
 }) {
   const profile =
     screen ??
-    createScreenProfile({ width: width ?? 800, height: height ?? 480 });
+    createScreenProfile({ width: width ?? 800, height: height ?? 600 });
   const W = profile.logicalWidth;
   const H = profile.logicalHeight;
   // Layout is authored on an 800x480 canvas.
   const sx = W / 800;
-  const sy = H / 480;
+  const sy = H / 600;
   const f = Math.min(sx, sy);
   const X = (x: number) => x * sx;
   const Y = (y: number) => y * sy;
@@ -453,7 +453,8 @@ function HourlyWeather({
                 : "flex-start",
           textAlign: align,
           fontSize: S(size),
-          fontWeight: o.bold ? 500 : 400,
+          fontFamily: "Inter",
+          fontWeight: 400,
           lineHeight: 1.1,
           whiteSpace: o.wrap ? "normal" : "nowrap",
           overflow: "hidden",
@@ -494,7 +495,7 @@ function HourlyWeather({
   // Current
   texts.push(
     text("cur-label", L, 18, `Current (${fmtClock(now.time, clock)})`, 18, { w: 270 }),
-    text("cur-temp", L + 120, 72, deg(now.temp), 78, { bold: true, w: 150 }),
+    text("cur-temp", L + 120, 72, deg(now.temp), 88, { bold: true, w: 150 }),
     text("cur-desc", L, 196, describe(now.code), 34, { w: 270 }),
   );
   icons.push(icon("cur-icon", L + 2, 62, 2.2, iconFor(now.code, now.day)));
@@ -509,8 +510,8 @@ function HourlyWeather({
       18,
       { w: RW },
     ),
-    text("today-hi", R + 66, 50, deg(today.max), 26, { bold: true, w: 60 }),
-    text("today-lo", R + 66, 76, deg(today.min), 26, { w: 60 }),
+    text("today-hi", R + 66, 50, deg(today.max), 28, { bold: true, w: 60 }),
+    text("today-lo", R + 66, 76, deg(today.min), 28, { w: 60 }),
     text("today-desc", R + 130, 56, describe(today.code), 32, {
       bold: true,
       w: RW - 130,
@@ -522,7 +523,7 @@ function HourlyWeather({
     const x = R + colW * i;
     texts.push(
       text(`nh-l-${i}`, x, 140, fmtHour(h.hour, clock), 18, { w: colW, align: "center" }),
-      text(`nh-t-${i}`, x, 208, deg(h.temp), 24, { bold: true, w: colW, align: "center" }),
+      text(`nh-t-${i}`, x, 208, deg(h.temp), 26, { bold: true, w: colW, align: "center" }),
     );
     icons.push(icon(`nh-i-${i}`, x + colW / 2 - 24 * 0.85, 162, 0.85, iconFor(h.code, h.day)));
   });
@@ -530,8 +531,8 @@ function HourlyWeather({
   // Tomorrow
   texts.push(
     text("tom-label", L, 276, `Tomorrow — ${tomorrowParts.weekday}`, 18, { w: 270 }),
-    text("tom-hi", L + 70, 308, deg(tomorrow.max), 26, { bold: true, w: 60 }),
-    text("tom-lo", L + 70, 334, deg(tomorrow.min), 26, { w: 60 }),
+    text("tom-hi", L + 70, 308, deg(tomorrow.max), 28, { bold: true, w: 60 }),
+    text("tom-lo", L + 70, 334, deg(tomorrow.min), 28, { w: 60 }),
     text("tom-desc", L, 378, describe(tomorrow.code), 24, { w: 262, wrap: true }),
   );
   icons.push(icon("tom-icon", L + 2, 306, 1.15, iconFor(tomorrow.code, true)));
@@ -540,7 +541,7 @@ function HourlyWeather({
     const x = R + colW * i;
     texts.push(
       text(`th-l-${i}`, x, 310, fmtHour(h.hour, clock), 18, { w: colW, align: "center" }),
-      text(`th-t-${i}`, x, 380, deg(h.temp), 24, { bold: true, w: colW, align: "center" }),
+      text(`th-t-${i}`, x, 380, deg(h.temp), 26, { bold: true, w: colW, align: "center" }),
     );
     icons.push(icon(`th-i-${i}`, x + colW / 2 - 24 * 0.85, 332, 0.85, iconFor(h.code, h.day)));
   });
@@ -555,6 +556,7 @@ function HourlyWeather({
           height: H,
           backgroundColor: "#fff",
           color: "#000",
+          fontFamily: "Inter",
         }}
       >
         <svg
