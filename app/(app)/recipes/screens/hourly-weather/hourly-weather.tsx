@@ -453,7 +453,7 @@ function HourlyWeather({
                 : "flex-start",
           textAlign: align,
           fontSize: S(size),
-          fontWeight: o.bold ? 700 : 400,
+          fontWeight: o.bold ? 500 : 400,
           lineHeight: 1.1,
           whiteSpace: o.wrap ? "normal" : "nowrap",
           overflow: "hidden",
@@ -509,8 +509,8 @@ function HourlyWeather({
       18,
       { w: RW },
     ),
-    text("today-hi", R + 66, 50, deg(today.max), 22, { bold: true, w: 60 }),
-    text("today-lo", R + 66, 76, deg(today.min), 22, { w: 60 }),
+    text("today-hi", R + 66, 50, deg(today.max), 26, { bold: true, w: 60 }),
+    text("today-lo", R + 66, 76, deg(today.min), 26, { w: 60 }),
     text("today-desc", R + 130, 56, describe(today.code), 32, {
       bold: true,
       w: RW - 130,
@@ -521,8 +521,8 @@ function HourlyWeather({
   nextHours.forEach((h, i) => {
     const x = R + colW * i;
     texts.push(
-      text(`nh-l-${i}`, x, 140, fmtHour(h.hour, clock), 16, { w: colW, align: "center" }),
-      text(`nh-t-${i}`, x, 208, deg(h.temp), 20, { bold: true, w: colW, align: "center" }),
+      text(`nh-l-${i}`, x, 140, fmtHour(h.hour, clock), 18, { w: colW, align: "center" }),
+      text(`nh-t-${i}`, x, 208, deg(h.temp), 24, { bold: true, w: colW, align: "center" }),
     );
     icons.push(icon(`nh-i-${i}`, x + colW / 2 - 24 * 0.85, 162, 0.85, iconFor(h.code, h.day)));
   });
@@ -530,8 +530,8 @@ function HourlyWeather({
   // Tomorrow
   texts.push(
     text("tom-label", L, 276, `Tomorrow — ${tomorrowParts.weekday}`, 18, { w: 270 }),
-    text("tom-hi", L + 70, 308, deg(tomorrow.max), 22, { bold: true, w: 60 }),
-    text("tom-lo", L + 70, 334, deg(tomorrow.min), 22, { w: 60 }),
+    text("tom-hi", L + 70, 308, deg(tomorrow.max), 26, { bold: true, w: 60 }),
+    text("tom-lo", L + 70, 334, deg(tomorrow.min), 26, { w: 60 }),
     text("tom-desc", L, 378, describe(tomorrow.code), 24, { w: 262, wrap: true }),
   );
   icons.push(icon("tom-icon", L + 2, 306, 1.15, iconFor(tomorrow.code, true)));
@@ -539,8 +539,8 @@ function HourlyWeather({
   tomorrowHours.forEach((h, i) => {
     const x = R + colW * i;
     texts.push(
-      text(`th-l-${i}`, x, 310, fmtHour(h.hour, clock), 16, { w: colW, align: "center" }),
-      text(`th-t-${i}`, x, 380, deg(h.temp), 20, { bold: true, w: colW, align: "center" }),
+      text(`th-l-${i}`, x, 310, fmtHour(h.hour, clock), 18, { w: colW, align: "center" }),
+      text(`th-t-${i}`, x, 380, deg(h.temp), 24, { bold: true, w: colW, align: "center" }),
     );
     icons.push(icon(`th-i-${i}`, x + colW / 2 - 24 * 0.85, 332, 0.85, iconFor(h.code, h.day)));
   });
